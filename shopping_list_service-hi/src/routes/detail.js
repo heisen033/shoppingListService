@@ -1,8 +1,7 @@
 //@@viewOn:imports
 import { createVisualComponent, Utils, Content } from "uu5g05";
 import Config from "./config/config.js";
-import Uu5Elements from "uu5g05-elements";
-import Uu5Forms from "uu5g05-forms";
+import ShoppingListDetail from "../core/shopping-list-detail.js";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -17,9 +16,9 @@ const Css = {
 //@@viewOn:helpers
 //@@viewOff:helpers
 
-const ItemEdit = createVisualComponent({
+const Detail = createVisualComponent({
   //@@viewOn:statics
-  uu5Tag: Config.TAG + "ItemEdit",
+  uu5Tag: Config.TAG + "Detail",
   nestingLevel: ["areaCollection", "area"],
   //@@viewOff:statics
 
@@ -32,40 +31,28 @@ const ItemEdit = createVisualComponent({
   //@@viewOff:defaultProps
 
   render(props) {
-    const { id, name} = props;
-
     //@@viewOn:private
-
+    const { children } = props;
+    console.log(props)
     //@@viewOff:private
 
     //@@viewOn:interface
     //@@viewOff:interface
 
     //@@viewOn:render
+    const attrs = Utils.VisualComponent.getAttrs(props, Css.main());
+    const currentNestingLevel = Utils.NestingLevel.getNestingLevel(props, Detail);
 
-    //@@viewOff:render
     return (
-      <Uu5Elements.ListItem
-      Label={name}
-      // actionList={[
-      //   { icon: "uugds-delete",  
-      //   onClick: () => {
-      //     setItemsEdit((prevList) => ({
-      //       ...prevList,
-      //       items: prevList.items.filter((item) => item.name === item.name),
-      //     }));
-      //   }}
-      // ]}
-      >
-        <div>
-          {name}
-        </div>
-      </Uu5Elements.ListItem>
+      <div {...attrs}>
+        <ShoppingListDetail />
+      </div>
     );
+    //@@viewOff:render
   },
 });
 
 //@@viewOn:exports
-export { ItemEdit };
-export default ItemEdit;
+export { Detail };
+export default Detail;
 //@@viewOff:exports

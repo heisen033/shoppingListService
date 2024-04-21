@@ -1,5 +1,5 @@
 {
-  "port": 1234,
+  "port": 8081,
   "autoOpenInBrowser": false,
   "basePath": "/shopping-list-service/0/",
   "useMockData": true,

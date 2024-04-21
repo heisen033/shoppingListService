@@ -1,5 +1,5 @@
 //@@viewOn:imports
-import { Utils, createVisualComponent, useSession} from "uu5g05";
+import { Utils, createVisualComponent, useSession, useEffect, useState} from "uu5g05";
 import { withRoute } from "uu_plus4u5g02-app";
 import Config from "./config/config.js";
 import ShoppingListsMain from "../core/shopping-lists-main.js";
@@ -40,6 +40,44 @@ let Home = createVisualComponent({
     //@@viewOn:private
     const { identity } = useSession();
     //@@viewOff:private
+    const [shoppingLists, setShoppingLists] = useState([
+      {
+        id: "3887237",
+        name: "James Shopping List",
+        author: "James",
+        authorId: "123",
+        archive: false,
+        members: [
+          { id: "234", name: "Amelia" },
+          { id: "345", name: "John" },
+        ],
+        items: [
+          { id: "20382083", name: "Bread", completed: false },
+          { id: "20352083", name: "Butter", completed: true },
+          { id: "20382183", name: "Milk", completed: true },
+        ],
+      },
+      {
+        id: "3887236",
+        name: "Chloe Shopping List",
+        author: "Chloe",
+        authorId: "456",
+        archive: false,
+        members: [
+          { id: "123", name: "James" },
+          { id: "345", name: "John" },
+        ],
+        items: [
+          { id: "20382083", name: "Bread", completed: false },
+          { id: "20352083", name: "Butter", completed: true },
+          { id: "20382183", name: "Milk", completed: true },
+        ],
+      }
+    ]);
+
+    // useEffect(() => {
+    //   setShoppingList(shoppingList);
+    // }, [shoppingList]);
 
     //@@viewOn:interface
     //@@viewOff:interface
@@ -48,7 +86,7 @@ let Home = createVisualComponent({
     const attrs = Utils.VisualComponent.getAttrs(props);
     return (
       <div {...attrs}>
-        <ShoppingListDetail />
+        <ShoppingListsMain shoppingListObjects={shoppingLists} setShoppingLists={setShoppingLists} />
       </div>
     );
     //@@viewOff:render

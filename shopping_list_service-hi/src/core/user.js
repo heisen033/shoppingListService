@@ -54,4 +54,4 @@ function useUser() {
 * }
 * */
 
-export { UserProvider, UserSelector, useUser };
+export { UserProvider, UserSelector, useUser, USERS };
