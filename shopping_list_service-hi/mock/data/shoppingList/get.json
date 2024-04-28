@@ -1,0 +1,35 @@
+{
+    "id": "3887237",
+    "name": "James Shopping List",
+    "author": "James",
+    "authorId": "123",
+    "archive": false,
+    "members": [
+        {
+            "id": "234",
+            "name": "Amelia"
+        },
+        {
+            "id": "345",
+            "name": "John"
+        }
+    ],
+    "items": [
+        {
+            "id": "20382083",
+            "name": "Bread",
+            "completed": false
+        },
+        {
+            "id": "20352083",
+            "name": "Butter",
+            "completed": true
+        },
+        {
+            "id": "20382183",
+            "name": "Milk",
+            "completed": true
+        }
+    ],
+    "uuAppErrorMap": {}
+}

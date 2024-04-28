@@ -56,10 +56,12 @@ const ShoppingListDetail = createVisualComponent({
   //@@viewOn:defaultProps
   defaultProps: {},
   //@@viewOff:defaultProps
-  render(props) {
+  render( props ) {
 
-    const { ShoppingListReceived } = props;
-    console.log(props.author)
+    // const { children } = shoppingListFromTile
+    const shoppingListId = props.id;
+
+    console.log("shoppingListFromTile log", shoppingListId)
     //@@viewOn:private
     //@@viewOff:private
     const user = useUser();

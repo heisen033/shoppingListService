@@ -7,6 +7,7 @@
   "namespace": "ShoppingListService",
   "spec": "uu5-app; uu_appg01_devkit@5.20.0",
   "dependencies": {
+    "uu_appg01": "^5.20.14",
     "uu_plus4u5g02": "^1.22.2",
     "uu_plus4u5g02-app": "^1.22.2",
     "uu_plus4u5g02-elements": "^1.22.2",

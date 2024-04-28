@@ -1,9 +1,12 @@
 //@@viewOn:imports
-import { Utils, createVisualComponent, useSession, useEffect, useState} from "uu5g05";
+import { Utils, createVisualComponent, useSession, useEffect, useState, useDataList} from "uu5g05";
 import { withRoute } from "uu_plus4u5g02-app";
 import Config from "./config/config.js";
 import ShoppingListsMain from "../core/shopping-lists-main.js";
+import Calls from "../calls.js";
+import { RouteController } from "uu_plus4u5g02-app";
 import ShoppingListDetail from "../core/shopping-list-detail.js";
+import ListProvider from "../bricks/shopping-list/list-provider.js";
 
 //@@viewOff:imports
 
@@ -38,42 +41,31 @@ let Home = createVisualComponent({
 
   render(props) {
     //@@viewOn:private
+
+    // const shoppingListDataList = useDataList({
+    //   pageSize: 8,
+    //   handlerMap: {
+    //     load: handleLoad,
+    //     create: handleCreate,
+    //   },
+    //   itemHandlerMap: {
+    //   },
+    // });
+    
+    // function handleLoad(dtoIn) {
+    //   return Calls.shoppingList.list(dtoIn);
+    // }
+    
+    // function handleCreate(values) {
+    //   return Calls.shoppingList.create(values);
+    // }
+
+    // const { state, data, newData, errorData, pendingData, handlerMap } = shoppingListDataList;
+    // const shoppingListMock = props.shoppingListDataList.data.filter((item) => item !== undefined);
+    // console.log(state, data, newData, errorData, pendingData, handlerMap)
+
     const { identity } = useSession();
     //@@viewOff:private
-    const [shoppingLists, setShoppingLists] = useState([
-      {
-        id: "3887237",
-        name: "James Shopping List",
-        author: "James",
-        authorId: "123",
-        archive: false,
-        members: [
-          { id: "234", name: "Amelia" },
-          { id: "345", name: "John" },
-        ],
-        items: [
-          { id: "20382083", name: "Bread", completed: false },
-          { id: "20352083", name: "Butter", completed: true },
-          { id: "20382183", name: "Milk", completed: true },
-        ],
-      },
-      {
-        id: "3887236",
-        name: "Chloe Shopping List",
-        author: "Chloe",
-        authorId: "456",
-        archive: false,
-        members: [
-          { id: "123", name: "James" },
-          { id: "345", name: "John" },
-        ],
-        items: [
-          { id: "20382083", name: "Bread", completed: false },
-          { id: "20352083", name: "Butter", completed: true },
-          { id: "20382183", name: "Milk", completed: true },
-        ],
-      }
-    ]);
 
     // useEffect(() => {
     //   setShoppingList(shoppingList);
@@ -85,9 +77,18 @@ let Home = createVisualComponent({
     //@@viewOn:render
     const attrs = Utils.VisualComponent.getAttrs(props);
     return (
-      <div {...attrs}>
-        <ShoppingListsMain shoppingListObjects={shoppingLists} setShoppingLists={setShoppingLists} />
-      </div>
+      <>
+      {/* <RouteBar /> */}
+        <ListProvider>
+          {(shoppingListDataList) => (
+            <RouteController routeDataObject={shoppingListDataList}>
+              <div>
+              <ShoppingListsMain shoppingListDataList={shoppingListDataList} />
+              </div>
+            </RouteController>
+          )}
+        </ListProvider>
+      </>
     );
     //@@viewOff:render
   },

@@ -39,6 +39,28 @@ const Calls = {
     return await Calls.getWorkspace();
   },
 
+  ShoppingList: {
+    list(dtoIn) {
+      const commandUri = Calls.getCommandUri("shoppingList/list");
+      return Calls.call("get", commandUri, dtoIn);
+    },
+
+    create(dtoIn) {
+      const commandUri = Calls.getCommandUri("shoppingList/create");
+      return Calls.call("post", commandUri, dtoIn);
+    },
+
+    update(dtoIn) {
+      const commandUri = Calls.getCommandUri("shoppingList/update");
+      return Calls.call("post", commandUri, dtoIn);
+    },
+
+    delete(dtoIn) {
+      const commandUri = Calls.getCommandUri("shoppingList/delete");
+      return Calls.call("post", commandUri, dtoIn);
+    },
+  },
+
   getCommandUri(useCase, baseUri = Environment.appBaseUri) {
     return (!baseUri.endsWith("/") ? baseUri + "/" : baseUri) + (useCase.startsWith("/") ? useCase.slice(1) : useCase);
   },

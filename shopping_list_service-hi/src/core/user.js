@@ -8,6 +8,7 @@ const USERS = [
 ];
 
 // in pure react
+//     "callsBaseUri": "https://uuapp-dev.plus4u.net/shopping_list_service/9713389102e4479ba896e3abb690056c/"
 // const UserContext = React.createContext();
 // const useUserContext = () => React.useContext(UserContext);
 const [UserContext, useUserContext] = Utils.Context.create([]);

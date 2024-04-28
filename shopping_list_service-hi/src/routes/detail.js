@@ -33,7 +33,10 @@ const Detail = createVisualComponent({
   render(props) {
     //@@viewOn:private
     const { children } = props;
-    console.log(props)
+    console.log("props.params log: ", props.params)
+    console.log("props.shoppingList log", props.shoppingList)
+    const shoppingListRecievedId = props.params.id
+    console.log("shoppingListReceivedId log", shoppingListRecievedId)
     //@@viewOff:private
 
     //@@viewOn:interface
@@ -45,7 +48,7 @@ const Detail = createVisualComponent({
 
     return (
       <div {...attrs}>
-        <ShoppingListDetail />
+        <ShoppingListDetail id={shoppingListRecievedId}/>
       </div>
     );
     //@@viewOff:render

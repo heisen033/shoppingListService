@@ -1,11 +1,10 @@
 //@@viewOn:imports
-import { createVisualComponent, useState, Utils, Content } from "uu5g05";
+import { createVisualComponent, Utils, Content, useState } from "uu5g05";
 import Config from "./config/config.js";
-import { useUser } from "./user.js";
+import { useUser } from "../../core/user.js";
 import Uu5Elements from "uu5g05-elements";
 import { useEffect } from "uu5g05";
-import { Link } from 'react-router-dom';
-import Uu5Forms from "uu5g05-forms";
+import { useRoute  } from "uu5g05";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -31,17 +30,17 @@ const Css = {
     width: "100%",
   })
 };
-
 //@@viewOff:css
 
 //@@viewOn:helpers
 //@@viewOff:helpers
 
-const ShoppingListTile = createVisualComponent({
+const Tile = createVisualComponent({
   //@@viewOn:statics
-  uu5Tag: Config.TAG + "ShoppingListTile",
+  uu5Tag: Config.TAG + "Tile",
   nestingLevel: ["areaCollection", "area"],
   //@@viewOff:statics
+
   //@@viewOn:propTypes
   propTypes: {},
   //@@viewOff:propTypes
@@ -60,6 +59,7 @@ const ShoppingListTile = createVisualComponent({
 
     const [hasAccess, setHasAccess] = useState(false);
 
+    const [route, setRoute] = useRoute();
     const user = useUser();
     const [open, setOpen] = useState(false);
     //@@viewOff:private
@@ -92,7 +92,8 @@ const ShoppingListTile = createVisualComponent({
                 }}>
                   Detail
                 </Link> */}
-                <Uu5Elements.Button href="detail" >Detail</Uu5Elements.Button>
+                <Uu5Elements.Button 
+                onClick={() => setRoute("detail", { id: shoppingListTile.id })}>Detail</Uu5Elements.Button>
                 {isOwner ? (
                   <Uu5Elements.Button icon="uugds-delete" onClick={() => setOpen(true)} colorScheme="negative" />
                 ) : null}
@@ -124,7 +125,6 @@ const ShoppingListTile = createVisualComponent({
 });
 
 //@@viewOn:exports
-export { ShoppingListTile };
-export default ShoppingListTile;
+export { Tile };
+export default Tile;
 //@@viewOff:exports
-//

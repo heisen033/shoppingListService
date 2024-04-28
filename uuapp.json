@@ -12,6 +12,9 @@
       "appDeploymentUri": null
     }
   },
-  "shopping_list_service-hi": {},
+  "shopping_list_service-hi": {
+    "componentList": [
+    ]
+  },
   "shopping_list_service-server": {}
 }

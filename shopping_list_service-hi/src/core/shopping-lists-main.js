@@ -1,12 +1,13 @@
 //@@viewOn:imports
-import { createVisualComponent, useState, Utils } from "uu5g05";
+import { createVisualComponent, useState, useDataList, Utils } from "uu5g05";
 import Config from "./config/config.js";
 import { useUser } from "./user.js";
 import Uu5Elements from "uu5g05-elements";
 import Uu5Forms from "uu5g05-forms";
 import { useEffect } from "uu5g05";
-import ShoppingListTile from "./shopping-list-tile.js";
+import Tile from "../bricks/shopping-list/tile";
 import { USERS } from "./user.js";
+import Calls from "../calls.js";
 //@@viewOff:imports
 
 //@@viewOn:constants
@@ -61,9 +62,13 @@ const ShoppingListsMain = createVisualComponent({
   defaultProps: {},
   //@@viewOff:defaultProps
 
-  render({ shoppingListObjects, setShoppingLists }) {
-    // const shoppingListObjects = props.shoppingListObjects;
+  render({ shoppingListDataList }) {
 
+
+
+    // const shoppingListObjects = props.shoppingListObjects;
+    const rawShoppingLists = shoppingListDataList.data.filter((item) => item !== undefined);
+    const [shoppingListObjects, setShoppingLists] = useState(rawShoppingLists.map((item) => (item.data)))
     //@@viewOn:private
     // const { children } = props;
     const user = useUser();
@@ -169,13 +174,13 @@ const ShoppingListsMain = createVisualComponent({
           actionList={[{ icon: "uugds-plus", children: "Add", onClick: () => setOpen(true) }]}
         >
           {shoppingListObjects.map((shoppingList) => (
-            <ShoppingListTile
+            <Tile
               key={shoppingList.id}
               onDelete={handleDelete}
               shoppingListTile={shoppingList}
               className={Css.columnsCss()}
             >
-            </ShoppingListTile>
+            </Tile>
           ))}
         </Uu5Elements.Block>
         <Uu5Forms.Form.Provider key={open} onSubmit={handleSubmit} >
